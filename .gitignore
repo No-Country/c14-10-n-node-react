@@ -7,16 +7,6 @@ Thumbs.db
 
 # Directorios de dependencias y módulos
 node_modules/
-vendor/
-
-# Archivos de configuración local
-.idea/
-.vscode/
-.env
-
-# Archivos de construcción y salida
-build/
-dist/
 
 # Archivos de credenciales
 .env
