@@ -24,7 +24,7 @@ export const dataTransaction = [
         description: "Comida en restaurante",
         createdAt: "2023-03-05T19:00:00Z",
         isApproved: false,
-        approvalDate: null
+        approvalDate: "2023-03-05T19:00:00Z"
     },
     {
         transactionId:"4",

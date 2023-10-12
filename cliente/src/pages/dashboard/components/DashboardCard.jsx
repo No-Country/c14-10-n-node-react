@@ -7,7 +7,7 @@ const DashboardCard = ({
 }) => {
     return (
         <div>
-            <div className={` rounded-xl shadow-xl p-4 ${color}`}>
+            <div className={` rounded-xl shadow-xl hover:shadow-gray-400 p-4 ${color}`}>
                 <div className="flex items-center justify-between text-white">
                     <div className="flex flex-col">
                         <img 
