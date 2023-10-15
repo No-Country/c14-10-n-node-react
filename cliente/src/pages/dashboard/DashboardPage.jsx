@@ -1,12 +1,4 @@
 import Sidebar from '../../components/Sidebar'
-import {
-    DashboardHeader,
-    DashboardCards,
-    GraphicLineChart,
-    GraphicDonutChart,
-    TransactionHistory,
-    Goals
-} from './components'
 import { Outlet } from 'react-router-dom'
 
 const DashboardPage = () => {
