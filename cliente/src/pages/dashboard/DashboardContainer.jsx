@@ -7,7 +7,7 @@ import { DashboardHeader,
     
 const DashboardContainer = () => {
     return (
-        <div className="flex flex-col gap-12 w-full h-full py-6 p-4 md:px-20 bg-[#efeff2] overflow-y-auto">
+        <div className="z-10 flex flex-col gap-12 w-full h-full md:px-10 bg-[#efeff2] overflow-y-auto">
                 <DashboardHeader/>
                 <DashboardCards/>
                 <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-10">

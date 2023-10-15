@@ -1,8 +1,7 @@
 
-const FavoritePage = () => {
+
+export default function FavoritePage() {
     return (
         <div>FavoritePage</div>
     )
 }
-
-export default FavoritePage
