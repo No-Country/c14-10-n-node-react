@@ -9,6 +9,8 @@ import FavoritePage from '../pages/dashboard/favoritos/FavoritePage'
 import CardsPage from '../pages/dashboard/cards/CardsPage'
 import ConfigPage from '../pages/dashboard/configuracion/ConfigPage'
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
+import Error404 from "../components/Error404";
+import SignUpPage from "../pages/Auth/SignUpPage"
 
 
 export const router = createBrowserRouter([
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: 'login', element: <LoginPage /> },
+            { path: 'signup', element: <SignUpPage /> }
         ],
     },
     {
@@ -26,9 +29,9 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: (
+                element:
                     <DashboardPage />
-                ),
+                ,
                 children: [
                     {
                         path: 'transacciones',
@@ -58,6 +61,6 @@ export const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <Navigate to='/login' />,
+        element: <Error404 />,
     },
 ]);
