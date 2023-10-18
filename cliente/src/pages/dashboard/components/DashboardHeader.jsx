@@ -10,6 +10,7 @@ const DashboardHeader = () => {
         console.log('logout')
         console.log('Sin funcionalidad aun')
     }
+    const dataCurrent = new Date();
     return (
         <div className="flex justify-between items-center flex-wrap max-md:gap-2">
             <div className="flex flex-col">
@@ -18,7 +19,14 @@ const DashboardHeader = () => {
             </div>
             <div className="flex bg-white px-4 py-3 rounded-xl gap-2">
                 <img className='w-6 h-6 cursor-pointer' src={calendarIcon} alt="calendario icono" />
-                <p>Jul 19,2022</p>
+                <p>{
+                    dataCurrent.toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })
+                    }</p>
             </div>
             <div className="flex rounded-xl bg-white border-[1px] border-transparent px-4 py-2 gap-2 group">
                 <img className='w-5 h-5 cursor-pointer' src={searchIcon} alt="icono de lupa" />

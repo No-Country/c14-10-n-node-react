@@ -70,11 +70,59 @@ const TransactionPage = () => {
             description: "Proyecto de la universidad",
             isApproved: false
         },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Compra de libros",
+            isApproved: true
+        },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Viaje de vacaciones",
+            isApproved: false
+        },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Proyecto de la universidad",
+            isApproved: false
+        },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Compra de libros",
+            isApproved: true
+        },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Viaje de vacaciones",
+            isApproved: false
+        },
+        {
+            createdAt: "2021-10-10",
+            amount: 5000,
+            description: "Proyecto de la universidad",
+            isApproved: false
+        },
     ])
+    const [filterTransactions, setFilterTransactions] = useState(transactions)
+    const filterForApproved = () => {
+        const filter = transactions.filter(transaction => transaction.isApproved)
+        setFilterTransactions(filter)
+    }
+    const filterForPending = () => {
+        const filter = transactions.filter(transaction => !transaction.isApproved)
+        setFilterTransactions(filter)
+    }
+    const filterReset = () => {
+        setFilterTransactions(transactions)
+    }
     return (
         <div className="flex flex-col items-center w-full  md:px-14">
-            <TransactionHeader />
-            <TransactionTable transactions={transactions} />
+            <TransactionHeader filterForApproved={filterForApproved} filterForPending={filterForPending} filterReset={filterReset} />
+            <TransactionTable transactions={filterTransactions} />
         </div>
     )
     }

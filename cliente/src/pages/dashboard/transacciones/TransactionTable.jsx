@@ -16,13 +16,13 @@ function TransactionTable({ transactions }) {
                     </thead>
                     <tbody className="w-full">
                         {transactions.map((transaction, index) => (
-                        <tr key={index} className="w-full border-b-[1px] border-slate-400 py-2 px-6 grid grid-cols-5 items-center">
-                            <td className="font-bold">#0000{index}</td>
-                            <td className="text-slate-500 font-semibold">{transaction.description}</td>
-                            <td className="">{transaction.createdAt}</td>
-                            <td className="font-semibold text-blue-800 italic">${transaction.amount}</td>
-                            <td className={`rounded-[2rem] text-center w-fit px-6 p-2 font-semibold ${transaction?.isApproved ?'text-green-600 bg-green-50' :'text-red-600 bg-red-50'}`}>{transaction.isApproved ? 'Aprobado' :'Pendiente'}</td>
-                        </tr>
+                            <tr key={index} className="w-full border-[2px] border-slate-200 bg-white mb-1 py-2 px-6 grid grid-cols-5 items-center">
+                                <td className="font-bold">#0000{index}</td>
+                                <td className="text-slate-500 font-semibold">{transaction.description}</td>
+                                <td className="">{transaction.createdAt}</td>
+                                <td className="font-bold text-blue-800 italic">${transaction.amount}</td>
+                                <td className={`rounded-[2rem] text-center w-fit px-6 p-2 font-semibold ${transaction?.isApproved ?'text-green-600 bg-green-50' :'text-red-600 bg-red-50'}`}>{transaction.isApproved ? 'Aprobado' :'Pendiente'}</td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>

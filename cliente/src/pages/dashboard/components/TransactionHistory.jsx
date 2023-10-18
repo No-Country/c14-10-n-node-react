@@ -3,7 +3,7 @@ import { dataTransaction } from "./mockdata"
 const TransactionHistory = () => {
     return (
         <div className="p-8 flex flex-col gap-3">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-col md:flex-row">
                 <h2 className="text-xl text-black font-bold pb-2">Historial de transacciones</h2>
                 <div className="flex gap-2 text-slate-400 font-semibold">
                     <p className="px-1 relative border-b-[2px] border-primary text-primary">Recientemente</p>

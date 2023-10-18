@@ -14,9 +14,9 @@ const data = [
 const GraphicLineChart = () => {
     
     return (
-        <div className='p-8 flex flex-col gap-4'>
+        <div className='p-1 md:p-8 flex flex-col md:gap-4'>
             <div className='flex max-md:flex-col justify-between items-center'>
-                <h2 className='text-xl text-black font-bold pb-2'>Gastos mensuales</h2>
+                <h2 className='text-xl text-black font-bold pb-2'>Transacciones mensuales</h2>
                 <select name="" id=""
                     className='bg-primary text-white rounded-md px-4 py-2 outline-secondary font-bold hover:bg-blue-400'
                 >
@@ -25,7 +25,7 @@ const GraphicLineChart = () => {
                     <option className='font-semibold py-1 hover:bg-secondary' value="">Ultima semana</option>
                 </select>
             </div>
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="100%" height={400} padding={0}>
                 <AreaChart width={600} height={400} data={data}>
                     <CartesianGrid
                         stroke="#E0E0E0"
@@ -57,6 +57,9 @@ const GraphicLineChart = () => {
                         dataKey="gastos" 
                         domain={[0, 100]}
                         tickFormatter={(value) => `$${value}`}
+                        stroke="#000"
+                        padding={{left:0}}
+                        tickSize={10}
                     />
                     
                     <Line type="monotone" dataKey="gastos" stroke="#1062FB" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />
@@ -75,7 +78,7 @@ const GraphicLineChart = () => {
                         align="center"
                         verticalAlign="bottom"
                         height={36}
-                        content="Gastos"
+                        content="Transacciones"
                             
                         
                     />

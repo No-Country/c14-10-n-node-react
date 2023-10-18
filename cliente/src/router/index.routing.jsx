@@ -8,9 +8,9 @@ import TransactionPage from '../pages/dashboard/transacciones/TransactionPage'
 import FavoritePage from '../pages/dashboard/favoritos/FavoritePage'
 import CardsPage from '../pages/dashboard/cards/CardsPage'
 import ConfigPage from '../pages/dashboard/configuracion/ConfigPage'
-import DashboardContainer from "../pages/dashboard/DashboardContainer";
 import Error404 from "../components/Error404";
 import SignUpPage from "../pages/Auth/SignUpPage"
+import DashboardContainer from "../pages/dashboard/DashboardContainer";
 
 
 export const router = createBrowserRouter([

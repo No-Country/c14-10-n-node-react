@@ -1,122 +1,67 @@
-
+import CardCredit from "../../../components/CardCredit"
 
 export default function CardsPage() {
     return (
-        <div className="w-full flex justify-center gap-8 max-md:flex-col">
-            {/* card 1 */}
-            <article className="flex md:w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-                
-                <img className="relative object-cover w-full h-full rounded-xl" src="https://i.imgur.com/kGkSg1v.png"/>
-                
-                <div className="w-full px-8 absolute top-8">
-                    <div className="flex justify-between">
-                        <div className="">
-                            <p className="font-light">
-                                Name
-                            </p>
-                            <p className="font-medium tracking-widest">
-                                Karthik P
-                            </p>
-                        </div>
-                        <img className="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png"/>
-                    </div>
-                    <div className="pt-1">
-                        <p className="font-light">
-                            Card Number
-                        </p>
-                        <p className="font-medium tracking-more-wider">
-                            4642  3489  9867  7632
+        <div className="w-full flex px-2 py-2 md:px-10 flex-col justify-start gap-8 max-md:flex-col">
+            <h2 className="text-2xl font-bold text-gray-800">Tarjetas de credito</h2>
+            <div className="flex md:gap-16">
+                <CardCredit />
+                <article className="flex flex-col gap-4">
+                    <h3 className="text-xl font-bold text-white bg-black px-4 py-2 w-fit uppercase">Primario</h3>
+                    <div>
+                        <h4 className="font-semibold text-slate-500">Agregado el</h4>
+                        <p>
+                            Martes 12 de Octubre del 2021
                         </p>
                     </div>
-                    <div className="pt-6 pr-6">
-                        <div className="flex justify-between">
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    Valid
-                                </p>
-                                <p className="font-medium tracking-wider text-sm">
-                                    11/15
-                                </p>
-                            </div>
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    Expiry
-                                </p>
-                                <p className="font-medium tracking-wider text-sm">
-                                    03/25
-                                </p>
-                            </div>
-
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    CVV
-                                </p>
-                                <p className="font-bold tracking-more-wider text-sm">
-                                    ···
-                                </p>
-                            </div>
+                    <div className="flex justify-between gap-3">
+                        <div>
+                            <p>Rail preference</p>
+                            <p>cross_river</p>
+                        </div>
+                        <div>
+                            <p>Issuer</p>
+                            <p>440393</p>
+                        </div>
+                        <div>
+                            <p>Country code</p>
+                            <p>USA</p>
                         </div>
                     </div>
-
-                </div>
-            </article>
-                {/* card 2 */}
-            <article className=" flex md:w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-                
-                <img className="relative object-cover w-full h-full rounded-xl" src="https://i.imgur.com/Zi6v09P.png"/>
-                
-                <div className="w-full px-8 absolute top-8">
-                    <div className="flex justify-between">
-                        <div className="">
-                            <p className="font-light">
-                                Name
-                            </p>
-                            <p className="font-medium tracking-widest">
-                                Karthik P
-                            </p>
-                        </div>
-                        <img className="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png"/>
-                    </div>
-                    <div className="pt-1">
-                        <p className="font-light">
-                            Card Number
-                        </p>
-                        <p className="font-medium tracking-more-wider">
-                            4642  3489  9867  7632
+                </article>
+            </div>
+            <div className="flex md:gap-16">
+                <CardCredit />
+                <article className="flex flex-col gap-4">
+                    <h3 className="text-xl font-semibold text-black border-[1px] border-gray-400 px-4 py-2 w-fit">Hacer primario</h3>
+                    <div>
+                        <h4 className="font-semibold text-slate-500">Agregado el</h4>
+                        <p>
+                            Martes 12 de Octubre del 2021
                         </p>
                     </div>
-                    <div className="pt-6 pr-6">
-                        <div className="flex justify-between">
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    Valid
-                                </p>
-                                <p className="font-medium tracking-wider text-sm">
-                                    11/15
-                                </p>
-                            </div>
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    Expiry
-                                </p>
-                                <p className="font-medium tracking-wider text-sm">
-                                    03/25
-                                </p>
-                            </div>
-
-                            <div className="">
-                                <p className="font-light text-xs">
-                                    CVV
-                                </p>
-                                <p className="font-bold tracking-more-wider text-sm">
-                                    ···
-                                </p>
-                            </div>
+                    <div className="flex justify-between gap-3">
+                        <div>
+                            <p>Rail preference</p>
+                            <p>cross_river</p>
+                        </div>
+                        <div>
+                            <p>Issuer</p>
+                            <p>440393</p>
+                        </div>
+                        <div>
+                            <p>Country code</p>
+                            <p>USA</p>
                         </div>
                     </div>
-
-                </div>
-            </article>
+                </article>
+            </div>
+            <div>
+                <article className="cursor-pointer">
+                    <h2 className="text-2xl font-bold text-slate-800">Tarjeta de credito</h2>
+                    <p className="text-slate-600">Agrega una tarjeta de credito para poder realizar pagos</p>
+                </article>
+            </div>
         </div>
     )
 }
