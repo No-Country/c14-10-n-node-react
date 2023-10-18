@@ -40,6 +40,7 @@ export async function signup(req, res) {
     const token = await createAccessToken({ id: userSaved._id });
     res.cookie("token", token);
     res.status(201).json({
+      token: token,
       id: userSaved._id,
       username: userSaved.username,
       email: userSaved.email,

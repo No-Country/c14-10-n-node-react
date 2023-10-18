@@ -1,12 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { RouterProvider } from 'react-router-dom'
-/* import LoginPage from './pages/Auth/LoginPage'
-import Home from './pages/Home/Home'
-import SignUpPage from './pages/Auth/SignUpPage'
-import DashboardPage from './pages/dashboard/DashboardPage' */
 import { router } from './router/index.routing'
+import { useAuthContext } from './hooks/useAuthContext'
+import { useEffect } from 'react'
 
 function App() {
+  const { checkAuth } = useAuthContext()
+  const token = window.localStorage.getItem('token')
 
+  useEffect(() => {
+    async function verifyToken() {
+      await checkAuth(token);
+    }
+    verifyToken()
+  }, [token])
   return (
     <RouterProvider router={router} />
   )

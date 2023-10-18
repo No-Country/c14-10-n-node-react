@@ -1,9 +1,11 @@
-import { useState } from "react"
-import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useState } from "react";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
-export default function FormLogin() {
-    const { login } = useAuthContext();
+export default function FormSignUp() {
+
+    const { register } = useAuthContext();
     const [dates, setDates] = useState({
+        username: '',
         email: '',
         password: ''
     })
@@ -19,23 +21,34 @@ export default function FormLogin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(dates)
-        await login(dates)
+        await register(dates)
     }
+
     return (
         <form
             onSubmit={handleSubmit}
             className="space-y-5"
         >
-
+            <div>
+                <label className="font-medium">
+                    Nombre
+                </label>
+                <input
+                    onChange={handleInputChange}
+                    value={dates.username}
+                    name="username"
+                    type="text"
+                    required
+                    className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
+                />
+            </div>
             <div>
                 <label className="font-medium">
                     Email
                 </label>
                 <input
-                    name="email"
+                    name="email" onChange={handleInputChange}
                     value={dates.email}
-                    onChange={handleInputChange}
                     type="email"
                     required
                     className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
@@ -46,19 +59,18 @@ export default function FormLogin() {
                     Contraseña
                 </label>
                 <input
-                    value={dates.password}
-                    onChange={handleInputChange}
                     name="password"
+                    onChange={handleInputChange}
+                    value={dates.password}
                     type="password"
                     required
                     className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
                 />
             </div>
-            <button
-                type="submit"
+            <button type="submit"
                 className="w-full px-4 py-2 font-medium text-white transition-all duration-500 rounded-lg bg-gradient-to-r from-primary to-title hover:to-primary active:bg-primary"
             >
-                Inicia Sesión
+                Crear cuenta
             </button>
         </form>
     )

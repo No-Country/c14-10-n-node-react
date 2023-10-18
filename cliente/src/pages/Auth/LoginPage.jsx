@@ -3,6 +3,7 @@ import Google from '../../assets/icons/google.svg'
 import PortadaAuth from './components/PortadaAuth'
 import FormLogin from './components/FormLogin'
 export default function LoginPage() {
+
     return (
         <main className="flex w-full">
             <PortadaAuth />

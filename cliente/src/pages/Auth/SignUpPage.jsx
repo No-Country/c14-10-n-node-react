@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import Google from '../../assets/icons/google.svg'
 import PortadaAuth from './components/PortadaAuth'
+import FormSignUp from './components/FormSignUp'
+
+
 export default function SignUpPage() {
+
     return (
         <main className="flex w-full">
             <PortadaAuth />
@@ -25,46 +29,7 @@ export default function SignUpPage() {
                         <span className="block w-full h-px bg-gray-300"></span>
                         <p className="absolute inset-x-0 inline-block px-2 mx-auto text-sm bg-white w-fit -top-2">O continúa con</p>
                     </div>
-                    <form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="space-y-5"
-                    >
-                        <div>
-                            <label className="font-medium">
-                                Nombre
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
-                            />
-                        </div>
-                        <div>
-                            <label className="font-medium">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                required
-                                className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
-                            />
-                        </div>
-                        <div>
-                            <label className="font-medium">
-                                Contraseña
-                            </label>
-                            <input
-                                type="password"
-                                required
-                                className="w-full px-3 py-2 mt-2 text-gray-500 bg-transparent border rounded-lg shadow-sm outline-none focus:border-primary"
-                            />
-                        </div>
-                        <button
-                            className="w-full px-4 py-2 font-medium text-white transition-all duration-500 rounded-lg bg-gradient-to-r from-primary to-title hover:to-primary active:bg-primary"
-                        >
-                            Crear cuenta
-                        </button>
-                    </form>
+                    <FormSignUp />
                 </div>
             </div>
         </main>

@@ -28,7 +28,7 @@ export default function ConfigPage() {
             }
             <div className="w-full flex gap-4 items-center py-10 border-b-[1px] ">
                 <picture>
-                    <img className="w-36 rounded-full" src="https://1.bp.blogspot.com/-swg8C41eG00/X1VbvxXQX7I/AAAAAAAAXl0/mgpSVh6rRi87j9bd8i-4Kldx0J90rRQpACLcBGAsYHQ/s320/Vegetta777_Aries.jpg" alt="" />
+                    <img className="rounded-full w-36" src="https://1.bp.blogspot.com/-swg8C41eG00/X1VbvxXQX7I/AAAAAAAAXl0/mgpSVh6rRi87j9bd8i-4Kldx0J90rRQpACLcBGAsYHQ/s320/Vegetta777_Aries.jpg" alt="" />
                 </picture>
                 <div className="flex flex-col gap-1">
                     <a 
