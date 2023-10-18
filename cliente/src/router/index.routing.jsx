@@ -10,6 +10,7 @@ import CardsPage from '../pages/dashboard/cards/CardsPage'
 import ConfigPage from '../pages/dashboard/configuracion/ConfigPage'
 import Error404 from "../components/Error404";
 import SignUpPage from "../pages/Auth/SignUpPage"
+import DashboardContainer from "../pages/dashboard/DashboardContainer";
 
 
 export const router = createBrowserRouter([
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
                         element: <TransactionPage />,
                     },
                     {
-                        path: 'configuracion',
+                        path: 'configuración',
                         element: <ConfigPage />,
                     },
                     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
                     {
                         path: 'favoritos',
                         element: <FavoritePage />,
+                    },
+                    {
+                        index: true,
+                        element: <DashboardContainer />,
                     },
                 ],
             },

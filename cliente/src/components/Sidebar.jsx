@@ -1,4 +1,4 @@
-import { useState } from 'react'
+/* eslint-disable react/prop-types */
 import cardIcon from '../assets/icons/card-icon.svg'
 import cardIconS from '../assets/icons/card-icon-s.svg'
 import cashIcon from '../assets/icons/cash-icon.svg'
@@ -9,51 +9,69 @@ import settingsIconS from '../assets/icons/settings-icon-s.svg'
 import settingsIcon from '../assets/icons/settings-icon.svg'
 import contactsIcon from '../assets/icons/contacts-icon.svg'
 import contactsIconS from '../assets/icons/contacts-icon-s.svg'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-const Sidebar = () => {
+const Sidebar = ({isMobile}) => {
+    const navigate = useNavigate();
     const [optionSelected,setOptionSelected] =  useState('dashboard');
+    const {pathname} = useLocation();
+    console.log(pathname);
     const handleOptionSelected = (option) => {
+        navigate(`/dashboard/${option.toLowerCase()}`);
         setOptionSelected(option);
     }
     // Sacar a otro archivo
     const options = [
         {
             id:1,
-            name:'Dashboard',
+            name:'dashboard',
             icon:dashboardIcon,
             iconSelected:dashboardIconS
         },
         {
             id:2,
-            name:'Transacciones',
+            name:'transacciones',
             icon:cashIcon,
             iconSelected:cashIconS
         },
         {
             id:3,
-            name:'Tarjetas',
+            name:'tarjetas',
             icon:cardIcon,
             iconSelected:cardIconS
         },
         {
             id:4,
-            name:'Configuración',
+            name:'configuración',
             icon:settingsIcon,
             iconSelected:settingsIconS
         },
         {
             id:5,
-            name:'Contactos',
+            name:'favoritos',
             icon:contactsIcon,
             iconSelected:contactsIconS
         },
     ]
 
+    useEffect(() => {
+        if(pathname==='/dashboard'){
+            setOptionSelected('dashboard');
+            return;
+        }
+        const option = pathname.split('/')[2];
+        setOptionSelected(option);
+    }, [pathname])
     return (
-        <aside className="w-[300px] py-6 bg-white text-slate-600">
-            <h2 className="text-xl font-bold text-slate-800 px-6">WarrenBank</h2>
-            <nav className="px-4 py-2">
-                <ul className="flex flex-col gap-3">
+        <aside className={`z-50 w-[300px] bg-white text-slate-600 border-[1px] border-transparent ${isMobile? 'w-screen py-2 border-t-slate-200':'py-6'}`}>
+            <h2 
+                className={`text-xl font-bold text-slate-800 px-6 mb-4 ${isMobile? 'hidden':''}`}
+            >
+                WarrenBank
+            </h2>
+            <nav className="px-4 bg-white z-50">
+                <ul className={`flex gap-3  ${isMobile ? 'flex-row w-full justify-center ':'flex-col'}`}>
                     {
                         options.map(option => (
                             <li 
@@ -62,7 +80,9 @@ const Sidebar = () => {
                                 className={`cursor-pointer rounded-[2rem] border-[1px] flex justify-start gap-3 items-center px-6 py-3 font-bold ${optionSelected==option.name ? 'bg-blue-50 border-primary text-primary': 'bg-transparent border-transparent'}`}
                             >
                                 <img className='w-6 h-6' src={option.name==optionSelected ?option.iconSelected:option.icon} alt="" />
-                                <p>{option.name}</p>
+                                <p className={`capitalize ${isMobile? 'hidden':''}`}>
+                                    {option.name}
+                                </p>
                             </li>
                         ))
                     }
