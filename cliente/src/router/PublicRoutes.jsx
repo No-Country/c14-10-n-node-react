@@ -1,9 +1,12 @@
-import { Outlet } from "react-router-dom"
+import { useContext } from "react"
+import { Navigate, Outlet } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 
 export default function PublicRoutes() {
-    return (
-        <div>
-            <Outlet />
-        </div>
-    )
+    const { auth } = useContext(AuthContext)
+    if (auth) {
+        return <Navigate to='/dashboard' />
+    }
+    return <Outlet />
+
 }
