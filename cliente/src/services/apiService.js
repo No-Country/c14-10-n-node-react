@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-    baseURL: 'https://api-warrenbank.onrender.com'
+    baseURL: 'https://api-warrenbank.onrender.com/api'
 })
 
 export const authUser = async (dates) => {
