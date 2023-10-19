@@ -35,3 +35,25 @@ export const checkUser = async (token) => {
     })
     return data
 }
+
+
+export const getTransactionsHistory = async (userId,token) => {
+    
+        const {data} = await apiService.get(`/transactions/history/${userId}`,{
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token      
+            }
+        })
+        return data
+}
+export const addTransaction = async (dates,token) => {
+    
+        const {data} = await apiService.post('/transactions/add', dates,{
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token       
+            }
+        })
+        return data
+}

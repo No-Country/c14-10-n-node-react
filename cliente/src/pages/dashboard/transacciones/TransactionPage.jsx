@@ -1,113 +1,13 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import TransactionTable from "./TransactionTable"
 import TransactionHeader from "./TransactionHeader"
+import {getTransactionsHistory} from '../../../services/apiService'
+import { AuthContext } from "../../../context/AuthContext"
 
 const TransactionPage = () => {
-    const [transactions, setTransactions] = useState([
-        {
-            createdAt: "2021-10-10",
-            amount: 1000,
-            description: "Pago de alquiler",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 1000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Spotify Premium",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Viaje de vacaciones",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Proyecto de la universidad",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Viaje de vacaciones",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Proyecto de la universidad",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Compra de libros",
-            isApproved: true
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Viaje de vacaciones",
-            isApproved: false
-        },
-        {
-            createdAt: "2021-10-10",
-            amount: 5000,
-            description: "Proyecto de la universidad",
-            isApproved: false
-        },
-    ])
+    const [transactions, setTransactions] = useState([])
     const [filterTransactions, setFilterTransactions] = useState(transactions)
+    const token = localStorage.getItem('token')
     const filterForApproved = () => {
         const filter = transactions.filter(transaction => transaction.isApproved)
         setFilterTransactions(filter)
@@ -119,6 +19,18 @@ const TransactionPage = () => {
     const filterReset = () => {
         setFilterTransactions(transactions)
     }
+    const {dataUser} = useContext(AuthContext)
+    useEffect(() => {
+        const getTransactions = async () => {
+            const response = await getTransactionsHistory(dataUser.id,token)
+            console.log(response)
+            setTransactions(response)
+            // setFilterTransactions(response)
+            return response
+        }
+        getTransactions()
+    }, [dataUser,token])
+
     return (
         <div className="flex flex-col items-center w-full  md:px-14">
             <TransactionHeader filterForApproved={filterForApproved} filterForPending={filterForPending} filterReset={filterReset} />

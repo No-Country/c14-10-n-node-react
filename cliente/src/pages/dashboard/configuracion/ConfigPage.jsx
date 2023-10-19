@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../../context/AuthContext"
 
 export default function ConfigPage() {
     const [editProfile, setEditProfile] = useState(false)
     const stateInput = editProfile ? "bg-slate-50 border-gray-200" : "bg-transparent border-transparent pointer-events-none"
     const [editPhoto, setEditPhoto] = useState(false)
+    const { dataUser } = useContext(AuthContext)
+
     const handleEditProfile = () => {
         setEditProfile(!editProfile)
     }
@@ -36,7 +39,9 @@ export default function ConfigPage() {
                         className="border-[1px] font-bold cursor-pointer rounded-[1rem] px-4 py-2 hover:bg-slate-200 "
                         onClick={handleChangePhoto}
                     >Cambiar foto</a>
-                    <h2 className="pl-2 font-bold text-xl text-primary">Samuel </h2>
+                    <h2 className="pl-2 font-bold text-xl text-primary capitalize">
+                        {dataUser?.username}
+                    </h2>
                     <p className="pl-2">Barcelona,España</p>
                 </div>
             </div>
@@ -47,18 +52,18 @@ export default function ConfigPage() {
                         onClick={handleEditProfile}
                     >Editar</p>
                 </div>
-                <form action="" className="flex flex-col gap-6">
+                <form className="flex flex-col gap-6">
                     <section className="grid md:grid-cols-2 md:gap-8">
                         <div className="flex flex-col items-start gap-1">
-                            <label className="font-semibold text-slate-600 text-lg" htmlFor="">Nombre</label>
+                            <label className="font-semibold text-slate-600 text-lg">Nombre</label>
                             <input 
-                                className={`text-lg font-semibold ${stateInput} rounded-[.8rem] border-[1px]  outline-blue-400 text-slate-800 py-2 px-4`} 
+                                className={`text-lg font-semibold ${stateInput} rounded-[.8rem] border-[1px]  outline-blue-400 text-slate-800 py-2 px-4 capitalize`} 
                                 type="text" 
-                                value="Samuel"
+                                value={dataUser?.username}
                             />
                         </div>
                         <div className="flex flex-col items-start gap-1">
-                            <label className="font-semibold text-slate-600 text-lg" htmlFor="">Nombre completo</label>
+                            <label className="font-semibold text-slate-600 text-lg" >Nombre completo</label>
                             <input 
                                 className={`text-lg font-semibold ${stateInput} rounded-[.8rem] border-[1px]  outline-blue-400 text-slate-800 py-2 px-4`} 
                                 type="text" 
@@ -74,7 +79,7 @@ export default function ConfigPage() {
                             />
                         </div>
                         <div className="flex flex-col items-start gap-1">
-                            <label className="font-semibold text-slate-600 text-lg" htmlFor="">Numero Telefonico</label>
+                            <label className="font-semibold text-slate-600 text-lg">Numero Telefonico</label>
                             <input 
                                 className={`text-lg font-semibold ${stateInput} rounded-[.8rem] border-[1px]  outline-blue-400 text-slate-800 py-2 px-4`} 
                                 type="number" 
@@ -82,7 +87,7 @@ export default function ConfigPage() {
                             />
                         </div>
                         <div className="flex flex-col items-start gap-1">
-                            <label className="font-semibold text-slate-600 text-lg" htmlFor="">Ubicacion</label>
+                            <label className="font-semibold text-slate-600 text-lg">Ubicacion</label>
                             <input 
                                 className={`text-lg font-semibold ${stateInput} rounded-[.8rem] border-[1px]  outline-blue-400 text-slate-800 py-2 px-4`} 
                                 type="text" 
@@ -93,7 +98,10 @@ export default function ConfigPage() {
                     {
                         editProfile && (
                             <div className="flex justify-center">
-                                <input type="submit"  className="bg-gradient-blue-purple text-white text-lg cursor-pointer font-bold px-8 py-2 rounded-[1rem] hover:shadow-xl" value="Guardar cambios"/>
+                                <input 
+                                    type="submit"  
+                                    className="bg-gradient-blue-purple text-white text-lg cursor-pointer font-bold px-8 py-2 rounded-[1rem] hover:shadow-xl" 
+                                    value="Guardar cambios"/>
                             </div>
                         )
                     }

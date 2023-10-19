@@ -17,7 +17,7 @@ function TransactionTable({ transactions }) {
                     <tbody className="w-full">
                         {transactions.map((transaction, index) => (
                             <tr key={index} className="w-full border-[2px] border-slate-200 bg-white mb-1 py-2 px-6 grid grid-cols-5 items-center">
-                                <td className="font-bold">#0000{index}</td>
+                                <td className="font-bold truncate w-24">{transaction._id}</td>
                                 <td className="text-slate-500 font-semibold">{transaction.description}</td>
                                 <td className="">{transaction.createdAt}</td>
                                 <td className="font-bold text-blue-800 italic">${transaction.amount}</td>
