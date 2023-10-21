@@ -19,8 +19,8 @@ export const router = createBrowserRouter([
         element: <PublicRoutes />,
         children: [
             { index: true, element: <Home /> },
-            { path: '/login', element: <LoginPage /> },
-            { path: '/signup', element: <SignUpPage /> }
+            { path: 'login', element: <LoginPage /> },
+            { path: 'signup', element: <SignUpPage /> }
         ],
     },
     {
@@ -28,25 +28,25 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes />,
         children: [
             {
-                path: '/',
+                path: '',
                 element:
                     <DashboardPage />
                 ,
                 children: [
                     {
-                        path: '/transacciones',
+                        path: 'transacciones',
                         element: <TransactionPage />,
                     },
                     {
-                        path: '/configuración',
+                        path: 'configuración',
                         element: <ConfigPage />,
                     },
                     {
-                        path: '/tarjetas',
+                        path: 'tarjetas',
                         element: <CardsPage />,
                     },
                     {
-                        path: '/favoritos',
+                        path: 'favoritos',
                         element: <FavoritePage />,
                     },
                 ],
