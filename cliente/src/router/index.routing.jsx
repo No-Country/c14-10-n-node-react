@@ -10,7 +10,6 @@ import CardsPage from '../pages/dashboard/cards/CardsPage'
 import ConfigPage from '../pages/dashboard/configuracion/ConfigPage'
 import Error404 from "../components/Error404";
 import SignUpPage from "../pages/Auth/SignUpPage"
-import DashboardContainer from "../pages/dashboard/DashboardContainer";
 
 
 export const router = createBrowserRouter([
@@ -28,30 +27,25 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes />,
         children: [
             {
-                path: '',
-                element:
-                    <DashboardPage />
-                ,
-                children: [
-                    {
-                        path: 'transacciones',
-                        element: <TransactionPage />,
-                    },
-                    {
-                        path: 'configuración',
-                        element: <ConfigPage />,
-                    },
-                    {
-                        path: 'tarjetas',
-                        element: <CardsPage />,
-                    },
-                    {
-                        path: 'favoritos',
-                        element: <FavoritePage />,
-                    },
-                ],
+                index: true,
+                element: <DashboardPage />,
             },
-            { index: true, element: <DashboardContainer /> },
+            {
+                path: 'transacciones',
+                element: <TransactionPage />,
+            },
+            {
+                path: 'configuración',
+                element: <ConfigPage />,
+            },
+            {
+                path: 'tarjetas',
+                element: <CardsPage />,
+            },
+            {
+                path: 'favoritos',
+                element: <FavoritePage />,
+            },
         ],
     },
     {

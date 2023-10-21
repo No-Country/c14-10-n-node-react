@@ -1,31 +1,23 @@
-import { useEffect, useState } from 'react';
-import Sidebar from '../../components/Sidebar'
-import { Outlet } from 'react-router-dom'
+import {
+    DashboardHeader,
+    DashboardCards,
+    GraphicLineChart,
+    TransactionHistory
+} from './components'
 
 const DashboardPage = () => {
-    
-    // responsive sidebar
-    const [isMobile,setIsMobile] = useState(false);
-    window.addEventListener('resize', () => {
-        if(window.innerWidth > 768){
-            setIsMobile(false);
-        }else{
-            setIsMobile(true);
-        }
-    })
-    useEffect(() => {
-        if(window.innerWidth > 768){
-            setIsMobile(false);
-        }else{
-            setIsMobile(true);
-        }
-    }, [])
 
     return (
-        <div className={`flex h-screen ${isMobile ?'flex-col-reverse gap-0':''}`}>
-            <Sidebar isMobile={isMobile}/>
-            <div className={`flex w-full h-full py-6 px-2 bg-[#efeff2] overflow-y-auto ${isMobile ?'pb-0':''}`}>
-                <Outlet />
+        <div className="z-10 flex flex-col gap-9 w-full h-full md:px-10 bg-[#efeff2] overflow-y-auto">
+            <DashboardHeader />
+            <DashboardCards />
+            <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10">
+                <div className='bg-white rounded-[2rem]'>
+                    <GraphicLineChart />
+                </div>
+                <div className='bg-white rounded-[2rem]'>
+                    <TransactionHistory />
+                </div>
             </div>
         </div>
     )
