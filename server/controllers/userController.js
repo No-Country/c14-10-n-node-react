@@ -5,7 +5,7 @@ import {
   addToBlacklist,
   removeFromBlacklist,
   isTokenBlacklisted,
-} from "./blacklist.js";
+} from "./blackList.js";
 
 // User sign-up logic
 export async function signup(req, res) {
