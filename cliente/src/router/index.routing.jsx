@@ -1,6 +1,6 @@
 import LoginPage from "../pages/Auth/LoginPage";
 import Home from "../pages/Home/Home";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import PublicRoutes from './PublicRoutes'
 import PrivateRoutes from './PrivateRoutes'
 import DashboardPage from "../pages/dashboard/DashboardPage";
@@ -19,8 +19,8 @@ export const router = createBrowserRouter([
         element: <PublicRoutes />,
         children: [
             { index: true, element: <Home /> },
-            { path: 'login', element: <LoginPage /> },
-            { path: 'signup', element: <SignUpPage /> }
+            { path: '/login', element: <LoginPage /> },
+            { path: '/signup', element: <SignUpPage /> }
         ],
     },
     {
@@ -28,35 +28,30 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes />,
         children: [
             {
-                path: '',
+                path: '/',
                 element:
                     <DashboardPage />
                 ,
                 children: [
                     {
-                        path: 'transacciones',
+                        path: '/transacciones',
                         element: <TransactionPage />,
                     },
                     {
-                        path: 'configuración',
+                        path: '/configuración',
                         element: <ConfigPage />,
                     },
                     {
-                        path: 'tarjetas',
+                        path: '/tarjetas',
                         element: <CardsPage />,
                     },
                     {
-                        path: 'favoritos',
+                        path: '/favoritos',
                         element: <FavoritePage />,
-                    },
-                    {
-                        index: true,
-                        element: <DashboardContainer />,
                     },
                 ],
             },
-            { index: true, element: <DashboardPage /> },
-            { path: '*', element: <Navigate to='/dashboard' /> },
+            { index: true, element: <DashboardContainer /> },
         ],
     },
     {
