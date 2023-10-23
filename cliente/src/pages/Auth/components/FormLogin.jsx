@@ -19,7 +19,6 @@ export default function FormLogin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(dates)
         await login(dates)
     }
     return (

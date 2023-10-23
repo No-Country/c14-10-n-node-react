@@ -2,7 +2,7 @@ import searchIcon from '../../../assets/icons/search-icon.svg'
 import calendarIcon from '../../../assets/icons/calendar-icon.svg'
 import notificationIcon from '../../../assets/icons/notification-icon.svg'
 import { useAuthContext } from '../../../hooks/useAuthContext'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const DashboardHeader = () => {
     const navigate = useNavigate()
@@ -14,11 +14,11 @@ const DashboardHeader = () => {
     }
     const dataCurrent = new Date();
     const { logout, dataUser } = useAuthContext()
-    
+
     return (
         <div className="flex flex-wrap items-center justify-between max-md:gap-2">
             <div className="flex flex-col">
-                <h3 className="font-bold">Hola {dataUser.username}</h3>
+                <h3 className="font-bold">Hola {dataUser?.username}</h3>
                 <p className="font-semibold text-slate-500">Bienvenido de vuelta</p>
             </div>
             <div className="flex gap-2 px-4 py-3 bg-white rounded-xl">
@@ -30,7 +30,7 @@ const DashboardHeader = () => {
                         month: 'long',
                         day: 'numeric'
                     })
-                    }</p>
+                }</p>
             </div>
             <div className="flex rounded-xl bg-white border-[1px] border-transparent px-4 py-2 gap-2 group">
                 <img className='w-5 h-5 cursor-pointer' src={searchIcon} alt="icono de lupa" />

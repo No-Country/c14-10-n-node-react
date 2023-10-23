@@ -8,8 +8,10 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState()
     const [error, setError] = useState('')
     const [dataUser, setDataUser] = useState()
+    const [loading, setLoading] = useState(true)
 
     const login = async (user) => {
+        setLoading(true)
         try {
             const data = await authUser(user)
             if (data.token) {
@@ -21,11 +23,12 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             setError(error)
-            console.error(error)
         }
+        setLoading(false)
     }
 
     const checkAuth = async (token) => {
+        setLoading(true)
         if (token) {
             try {
                 const data = await checkUser(token)
@@ -41,6 +44,7 @@ export const AuthProvider = ({ children }) => {
                 console.error(error)
             }
         }
+        setLoading(false)
     }
 
     const logout = () => {
@@ -50,6 +54,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (user) => {
+        setLoading(true)
         try {
             const data = await registerUser(user)
             if (data.token) {
@@ -63,10 +68,11 @@ export const AuthProvider = ({ children }) => {
             setError(error)
             console.error(error)
         }
+        setLoading(false)
     }
 
     return (
-        <AuthContext.Provider value={{ login, register, checkAuth, auth, error, dataUser, logout }} >
+        <AuthContext.Provider value={{ login, loading, register, checkAuth, auth, error, dataUser, logout }} >
             {children}
         </AuthContext.Provider>
     )

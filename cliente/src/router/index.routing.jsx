@@ -1,6 +1,6 @@
 import LoginPage from "../pages/Auth/LoginPage";
 import Home from "../pages/Home/Home";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import PublicRoutes from './PublicRoutes'
 import PrivateRoutes from './PrivateRoutes'
 import DashboardPage from "../pages/dashboard/DashboardPage";
@@ -10,7 +10,6 @@ import CardsPage from '../pages/dashboard/cards/CardsPage'
 import ConfigPage from '../pages/dashboard/configuracion/ConfigPage'
 import Error404 from "../components/Error404";
 import SignUpPage from "../pages/Auth/SignUpPage"
-import DashboardContainer from "../pages/dashboard/DashboardContainer";
 
 
 export const router = createBrowserRouter([
@@ -28,35 +27,25 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes />,
         children: [
             {
-                path: '',
-                element:
-                    <DashboardPage />
-                ,
-                children: [
-                    {
-                        path: 'transacciones',
-                        element: <TransactionPage />,
-                    },
-                    {
-                        path: 'configuración',
-                        element: <ConfigPage />,
-                    },
-                    {
-                        path: 'tarjetas',
-                        element: <CardsPage />,
-                    },
-                    {
-                        path: 'favoritos',
-                        element: <FavoritePage />,
-                    },
-                    {
-                        index: true,
-                        element: <DashboardContainer />,
-                    },
-                ],
+                index: true,
+                element: <DashboardPage />,
             },
-            { index: true, element: <DashboardPage /> },
-            { path: '*', element: <Navigate to='/dashboard' /> },
+            {
+                path: 'transacciones',
+                element: <TransactionPage />,
+            },
+            {
+                path: 'configuración',
+                element: <ConfigPage />,
+            },
+            {
+                path: 'tarjetas',
+                element: <CardsPage />,
+            },
+            {
+                path: 'favoritos',
+                element: <FavoritePage />,
+            },
         ],
     },
     {
