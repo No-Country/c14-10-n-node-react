@@ -45,7 +45,7 @@ export async function signup(req, res) {
       email: userSaved.email,
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
-      ubicacion, // Include the new fields in the response
+      ubicacion,
       tarjetas,
       transacciones,
       dni,

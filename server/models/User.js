@@ -15,15 +15,15 @@ const userSchema = new mongoose.Schema(
     },
     passwordHash: {
       type: String,
-      required: true, // Store the password hash, not plain text
+      required: true,
     },
     salt: {
       type: String,
-      required: true, // Use this for generating unique password hashes
+      required: true,
     },
     isActive: {
       type: Boolean,
-      default: true, // Set to false to deactivate a user account
+      default: true,
     },
     ubicacion: String,
     tarjetas: [String],
