@@ -4,13 +4,14 @@ import Transaction from "../models/Transaction.js";
 export async function addTransaction(req, res) {
   try {
     // Extract transaction information from the request body
-    const { userId, amount, description } = req.body;
+    const { userId, amount, description, operadora } = req.body; 
 
     // Create a new transaction instance
     const newTransaction = new Transaction({
       userId,
       amount,
       description,
+      operadora, 
     });
 
     // Save the transaction to the database
@@ -46,8 +47,7 @@ export async function deleteTransaction(req, res) {
 
     console.log("Deleting transaction with ID:", transactionId);
 
-    // Use the transactionId to perform the deletion or any other necessary logic
-    // For example, you can use Mongoose to delete a transaction from the database
+    
     await Transaction.findByIdAndDelete(transactionId);
 
     console.log("Transaction deleted successfully");
@@ -58,5 +58,3 @@ export async function deleteTransaction(req, res) {
     res.status(500).json({ message: "Server error" });
   }
 }
-
-
