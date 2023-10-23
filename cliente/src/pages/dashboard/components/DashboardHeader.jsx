@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom'
 const DashboardHeader = () => {
     const navigate = useNavigate()
     const handleLogout = () => {
+        logout()
         navigate('/login')
         console.log('logout')
         console.log('Sin funcionalidad aun')
@@ -44,7 +45,7 @@ const DashboardHeader = () => {
                     <img className="object-cover object-top w-10 h-10 rounded-full" src="https://img.buzzfeed.com/buzzfeed-static/static/2015-12/16/15/enhanced/webdr03/original-2075-1450299148-17.jpg?downsize=1400:*&output-format=auto&output-quality=auto" alt="foto de perfil" />
                 </picture>
                 <div className='relative cursor-pointer group'>
-                    <h3 className='font-bold text-slate-700'>{dataUser.username}</h3>
+                    <h3 className='font-bold text-slate-700 min-w-[6rem]'>{dataUser.username}</h3>
                     {/* show modal logout */}
                     <button
                         className="absolute hidden w-full px-4 py-2 font-bold bg-white rounded-md group-hover:block text-primary outline-secondary hover:bg-blue-400"
