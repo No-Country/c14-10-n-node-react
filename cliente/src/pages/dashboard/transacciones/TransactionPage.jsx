@@ -24,11 +24,14 @@ const TransactionPage = () => {
         const getTransactions = async () => {
             const response = await getTransactionsHistory(dataUser?.id, token)
             setTransactions(response)
-            // setFilterTransactions(response)
             return response
         }
         getTransactions()
     }, [dataUser, token])
+
+    useEffect(() => {
+        setFilterTransactions(transactions)
+    }, [transactions])
 
     return (
         <div className="flex flex-col items-center w-full md:px-14">
