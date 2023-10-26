@@ -1,22 +1,23 @@
 import Transaction from "../models/Transaction.js";
 
-// Add a new transaction
+// Adding a new transaction
 export async function addTransaction(req, res) {
   try {
-    // Extract transaction information from the request body
-    const { userId, amount, description } = req.body;
+    // Extracting transaction information from the request body
+    const { userId, amount, description, operadora } = req.body;
 
-    // Create a new transaction instance
+    // Creating a new transaction instance
     const newTransaction = new Transaction({
       userId,
       amount,
       description,
+      operadora,
     });
 
-    // Save the transaction to the database
+    // Saving the transaction to the database
     await newTransaction.save();
 
-    // Respond with a success message
+    // Responding with a success message
     res.status(201).json({ message: "Transaction added successfully" });
   } catch (error) {
     console.error("Error adding transaction:", error);
@@ -27,9 +28,9 @@ export async function addTransaction(req, res) {
 // Get transaction history
 export async function getTransactionHistory(req, res) {
   try {
-    const { userId } = req.params; // Extract the userId from URL parameters
+    const { userId } = req.params; // Extracting the userId from URL parameters
 
-    // Query the database for transactions by user ID
+    // Querying the database for transactions by user ID
     const transactions = await Transaction.find({ userId });
 
     res.status(200).json(transactions);
@@ -42,12 +43,12 @@ export async function getTransactionHistory(req, res) {
 // Delete a transaction
 export async function deleteTransaction(req, res) {
   try {
-    const { transactionId } = req.params; // Extract the transactionId from URL parameters
+    const { transactionId } = req.params; // Extracting the transactionId from URL parameters
 
     console.log("Deleting transaction with ID:", transactionId);
 
-    // Use the transactionId to perform the deletion or any other necessary logic
-    // For example, you can use Mongoose to delete a transaction from the database
+    // Here we will use the transactionId to perform the deletion or any other necessary logic
+    // For example, we can use Mongoose to delete a transaction from the database
     await Transaction.findByIdAndDelete(transactionId);
 
     console.log("Transaction deleted successfully");
@@ -58,5 +59,3 @@ export async function deleteTransaction(req, res) {
     res.status(500).json({ message: "Server error" });
   }
 }
-
-

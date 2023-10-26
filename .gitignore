@@ -25,3 +25,16 @@ cliente/package-lock.json
 *.njsproj
 *.sln
 *.sw?
+# Archivos generados automáticamente
+*.log
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Directorios de dependencias y módulos
+node_modules/
+
+# Archivos de credenciales
+.env
+secrets.json

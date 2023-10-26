@@ -15,16 +15,55 @@ const userSchema = new mongoose.Schema(
     },
     passwordHash: {
       type: String,
-      required: true, // Debes almacenar el hash de la contraseña en lugar de la contraseña en texto claro
+      required: true,
     },
     salt: {
       type: String,
-      required: true, // Puedes usar esto para mejorar la seguridad al generar hashes de contraseña únicos
+      required: true,
     },
     isActive: {
       type: Boolean,
-      default: true, // Puedes establecer esto en false si deseas desactivar una cuenta de usuario
+      default: true,
     },
+    ubicacion: String,
+    tarjetas: [
+      {
+        numero: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        fechaExpiracion: {
+          type: String,
+          required: true,
+        },
+        codigoCVC: {
+          type: String,
+          required: true,
+        },
+        operadora: String,
+      },
+    ],
+    datosUsuario: {
+      nombresCompletos: String,
+      foto: String, // Store the Cloudinary URL for the photo
+      direccion: {
+        pais: String,
+        region: String,
+        zip: String,
+      },
+      numeroTelefonico: String,
+      dni: String,
+    },
+    transacciones: [
+      {
+        de: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        para: String, // Correo Electrónico
+      },
+    ],
   },
   {
     timestamps: true,

@@ -22,13 +22,13 @@ const transactionSchema = new Schema({
   },
   isApproved: {
     type: Boolean,
-    default: false, // Puedes establecer esto en true cuando se apruebe la transacción
+    default: false,
   },
   approvalDate: {
     type: Date,
-    default: null, // Puedes establecer aquí la fecha de aprobación de la transacción
+    default: null,
   },
-  // Agrega más campos según tus necesidades
+  operadora: String, // Add the operadora field here
 });
 
 const Transaction = model("Transaction", transactionSchema);
