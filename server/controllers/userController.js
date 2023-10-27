@@ -43,6 +43,7 @@ export async function signup(req, res) {
     res.cookie("token", token);
     res.status(201).json({
       id: userSaved._id,
+      token,
       username: userSaved.username,
       email: userSaved.email,
       createdAt: userSaved.createdAt,
@@ -82,6 +83,7 @@ export async function login(req, res) {
 
     res.cookie("token", token);
     res.status(201).json({
+      token,
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,

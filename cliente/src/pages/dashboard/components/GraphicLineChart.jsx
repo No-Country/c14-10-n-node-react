@@ -14,7 +14,7 @@ const data = [
 const GraphicLineChart = () => {
     
     return (
-        <div className='p-1 md:p-8 flex flex-col md:gap-4'>
+        <div className='sm:p-1 md:p-8 flex flex-col md:gap-4'>
             <div className='flex max-md:flex-col justify-between items-center'>
                 <h2 className='text-xl text-black font-bold pb-2'>Transacciones mensuales</h2>
                 <select name="" id=""
@@ -26,7 +26,7 @@ const GraphicLineChart = () => {
                 </select>
             </div>
             <ResponsiveContainer width="100%" height={400} padding={0}>
-                <AreaChart width={600} height={400} data={data}>
+                <AreaChart width={500} height={400} data={data}>
                     <CartesianGrid
                         stroke="#E0E0E0"
                         vertical={false}
