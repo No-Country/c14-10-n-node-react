@@ -1,21 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import SignUpPage from "./pages/SignUpPage";
-import LoginPage from "./pages/LoginPage";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/index.routing'
+import { useAuthContext } from './hooks/useAuthContext'
+import { useEffect } from 'react'
+import { Loader } from './components/Loader/Loader'
 
 function App() {
+  const { checkAuth, loading } = useAuthContext()
+  const token = window.localStorage.getItem('token')
+
+  useEffect(() => {
+    async function verifyToken() {
+      await checkAuth(token);
+    }
+    verifyToken()
+  }, [token])
+  if (loading) {
+    return <Loader />;
+  }
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/add" element={<h1>Transaction Page</h1>} />
-        <Route path="/history/:userId" element={<h1>Transaction History</h1>} />
-        <Route path="/profile" element={<h1>Profile</h1>} />
-      </Routes>
-    </BrowserRouter>
-  );
+    <RouterProvider router={router} />
+  )
 }
 
-export default App;
+export default App
