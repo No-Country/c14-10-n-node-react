@@ -50,12 +50,13 @@ const userSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
         },
-        para: String, // Correo Electrónico
+        para: String,
       },
     ],
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 
