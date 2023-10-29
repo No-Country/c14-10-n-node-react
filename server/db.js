@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { mongoose } from "mongoose";
 
 // Cadena de conexión a tu base de datos en MongoDB Atlas
 const dbUri =
