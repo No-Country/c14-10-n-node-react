@@ -8,6 +8,8 @@ const TransactionPage = () => {
     const [transactions, setTransactions] = useState([])
     const [filterTransactions, setFilterTransactions] = useState(transactions)
     const token = localStorage.getItem('token')
+    const { dataUser } = useContext(AuthContext)
+    const [filterActive, setFilterActive] = useState('all')
     const filterForApproved = () => {
         const filter = transactions?.filter(transaction => transaction.isApproved)
         setFilterTransactions(filter)
@@ -19,7 +21,16 @@ const TransactionPage = () => {
     const filterReset = () => {
         setFilterTransactions(transactions)
     }
-    const { dataUser } = useContext(AuthContext)
+    const handleFilter = (e) => {
+        setFilterActive(e.target.id)
+        if (e.target.id === 'filter-all') {
+            filterReset()
+        } else if (e.target.id === 'filter-approved') {
+            filterForApproved()
+        } else if (e.target.id === 'filter-pending') {
+            filterForPending()
+        }
+    }
     useEffect(() => {
         const getTransactions = async () => {
             const response = await getTransactionsHistory(dataUser?.id, token)
@@ -35,7 +46,7 @@ const TransactionPage = () => {
 
     return (
         <div className="flex flex-col items-center w-full md:px-14">
-            <TransactionHeader filterForApproved={filterForApproved} filterForPending={filterForPending} filterReset={filterReset} />
+            <TransactionHeader handleFilter={handleFilter} filterActive={filterActive}/>
             <TransactionTable transactions={filterTransactions} />
         </div>
     )

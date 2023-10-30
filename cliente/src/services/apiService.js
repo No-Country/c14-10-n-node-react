@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-    baseURL: 'https://api-warrenbank.onrender.com/api'
+    baseURL: 'http://localhost:3000/api'
 })
 
 export const authUser = async (dates) => {
@@ -56,4 +56,15 @@ export const addTransaction = async (dates,token) => {
             }
         })
         return data
+}
+
+const addCardCredit = async (dates,token) => {
+        
+            const {data} = await apiService.post('/cards/add', dates,{
+                headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token       
+                }
+            })
+            return data
 }

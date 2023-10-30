@@ -1,121 +1,20 @@
 import { useState } from "react";
 import CardCredit from "../../../components/CardCredit"
+import CardFormAdd from "./CardFormAdd";
+import MyCards from "./MyCards";
 
 export default function CardsPage() {
     const [addCardFormActive,setAddCardFormActive] = useState(false);
     return (
-        <div className="w-full flex px-2 py-2 md:px-10 flex-col justify-start gap-8 max-md:flex-col">
-            <h2 className="text-2xl font-bold text-gray-800">Tarjetas de credito</h2>
-            <div className="flex md:gap-16 flex-col md:flex-row gap-4 pb-8 border-b-[1px] border-gray-500">
-                <CardCredit />
-                <article className="flex flex-col gap-4">
-                    <h3 className="text-xl font-bold text-white bg-black px-4 py-2 w-fit uppercase">Primario</h3>
-                    <div>
-                        <h4 className="font-semibold text-slate-500">Agregado el</h4>
-                        <p>
-                            Martes 12 de Octubre del 2021
-                        </p>
-                    </div>
-                    <div className="flex justify-between gap-3">
-                        <div>
-                            <p>Rail preference</p>
-                            <p>cross_river</p>
-                        </div>
-                        <div>
-                            <p>Issuer</p>
-                            <p>440393</p>
-                        </div>
-                        <div>
-                            <p>Country code</p>
-                            <p>USA</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div className="flex md:gap-16  flex-col md:flex-row gap-4">
-                <CardCredit />
-                <article className="flex flex-col gap-4">
-                    <h3 className="text-xl font-semibold text-black border-[1px] border-gray-400 px-4 py-2 w-fit">Hacer primario</h3>
-                    <div>
-                        <h4 className="font-semibold text-slate-500">Agregado el</h4>
-                        <p>
-                            Martes 12 de Octubre del 2021
-                        </p>
-                    </div>
-                    <div className="flex justify-between gap-3">
-                        <div>
-                            <p>Rail preference</p>
-                            <p>cross_river</p>
-                        </div>
-                        <div>
-                            <p>Issuer</p>
-                            <p>440393</p>
-                        </div>
-                        <div>
-                            <p>Country code</p>
-                            <p>USA</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div>
-                <article className="cursor-pointer">
-                    <h2 className="text-2xl font-bold text-slate-800">Tarjeta de credito</h2>
-                    <p 
-                        className="text-slate-600" 
-                        onClick={() => setAddCardFormActive(!addCardFormActive)}
-                    >
-                        Agrega una tarjeta de credito para poder realizar pagos
-                    </p>
-                </article>
-                {
-                    addCardFormActive && (
-                        <form className="flex flex-col gap-4 p-4">
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Numero de tarjeta</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Nombre del titular</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Fecha de expiracion</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">CVV</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Codigo postal</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Direccion</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Ciudad</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Estado</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <label htmlFor="">Pais</label>
-                                <input type="text" className="p-2" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <button className="bg-primary text-white font-bold py-2 rounded-[2rem]">
-                                    Agregar tarjeta
-                                </button>
-                            </div>
-                        </form>
-                    )
-                }
-            </div>
-        </div>
+        <section className="px-2 md:px-10 py-2 w-full">
+            {
+                addCardFormActive ? (
+                    <CardFormAdd setAddCardFormActive={setAddCardFormActive} />
+                ) : (
+                    <MyCards setAddCardFormActive={setAddCardFormActive} />
+                )
+            }
+            
+        </section>
     )
 }
