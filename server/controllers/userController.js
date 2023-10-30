@@ -13,7 +13,7 @@ export async function signup(req, res) {
       datosUsuario,
       transacciones,
       dni,
-      tarjetas, 
+      tarjetas,
     } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -35,7 +35,7 @@ export async function signup(req, res) {
       datosUsuario,
       transacciones,
       dni,
-      tarjetas, 
+      tarjetas,
     });
 
     const userSaved = await newUser.save();
@@ -52,7 +52,7 @@ export async function signup(req, res) {
       datosUsuario,
       transacciones,
       dni,
-      tarjetas, 
+      tarjetas,
     });
   } catch (error) {
     console.error("Error in user sign-up:", error);
@@ -93,10 +93,10 @@ export async function login(req, res) {
       datosUsuario: userFound.datosUsuario,
       transacciones: userFound.transacciones,
       dni: userFound.dni,
-      tarjetas: userFound.tarjetas, 
+      tarjetas: userFound.tarjetas,
     });
   } catch (error) {
-    console.error("Error in user sign-up:", error);
+    console.error("Error in user login:", error);
     res.status(500).json({ message: "Server error" });
   }
 }
@@ -133,7 +133,7 @@ export async function getProfile(req, res) {
     datosUsuario: userFound.datosUsuario,
     transacciones: userFound.transacciones,
     dni: userFound.dni,
-    tarjetas: userFound.tarjetas, 
+    tarjetas: userFound.tarjetas,
   });
 }
 

@@ -28,7 +28,7 @@ const transactionSchema = new Schema({
     type: Date,
     default: null,
   },
-  operadora: String, // Add the operadora field here
+  operadora: String,
 });
 
 const Transaction = model("Transaction", transactionSchema);
