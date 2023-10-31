@@ -58,13 +58,23 @@ export const addTransaction = async (dates,token) => {
         return data
 }
 
-const addCardCredit = async (dates,token) => {
-        
-            const {data} = await apiService.post('/cards/add', dates,{
-                headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': token       
-                }
-            })
-            return data
+export const addCardCredit = async (dates,token) => {
+
+    const {data} = await apiService.post('/cards/addCard', dates,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token       
+        }
+    })
+    return data
+}
+
+export const getAllCardsById = async (userId,token) => {
+        const {data} = await apiService.get(`/cards/allCards/${userId}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token      
+            }
+        })
+        return data
 }

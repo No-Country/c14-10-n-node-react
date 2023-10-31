@@ -9,7 +9,8 @@ const TransactionPage = () => {
     const [filterTransactions, setFilterTransactions] = useState(transactions)
     const token = localStorage.getItem('token')
     const { dataUser } = useContext(AuthContext)
-    const [filterActive, setFilterActive] = useState('all')
+    const [filterActive, setFilterActive] = useState('filter-all')
+
     const filterForApproved = () => {
         const filter = transactions?.filter(transaction => transaction.isApproved)
         setFilterTransactions(filter)
@@ -38,15 +39,16 @@ const TransactionPage = () => {
             return response
         }
         getTransactions()
-    }, [dataUser, token])
-
+        console.log("actualizando transacciones")
+    }, [dataUser, token,filterActive])
+    
     useEffect(() => {
         setFilterTransactions(transactions)
     }, [transactions])
 
     return (
         <div className="flex flex-col items-center w-full md:px-14">
-            <TransactionHeader handleFilter={handleFilter} filterActive={filterActive}/>
+            <TransactionHeader handleFilter={handleFilter} filterActive={filterActive} setFilterActive={setFilterActive}/>
             <TransactionTable transactions={filterTransactions} />
         </div>
     )

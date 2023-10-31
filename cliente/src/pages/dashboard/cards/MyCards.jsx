@@ -1,12 +1,28 @@
+import { useContext, useEffect, useState } from "react"
 import CardCredit from "../../../components/CardCredit"
+import { getAllCardsById } from "../../../services/apiService"
+import { AuthContext } from "../../../context/AuthContext"
 
 const MyCards = ({setAddCardFormActive}) => {
+    const [cardsUser, setCardsUser] = useState([])
+    const token = localStorage.getItem('token')
+    const {dataUser} = useContext(AuthContext)
+
+    useEffect(() => {
+        const getCards = async () => {
+            // console.log(dataUser?.id)
+            const cards = await getAllCardsById(dataUser?.id, token)
+            setCardsUser(cards)
+        }
+        getCards()
+        console.log(cardsUser)
+    }, [])
     return (
         <div>
             <div className="w-full flex  flex-col justify-start gap-8 max-md:flex-col">
                 <h2 className="text-2xl font-bold text-gray-800">Tarjetas de credito</h2>
                 <div className="flex md:gap-16 flex-col md:flex-row gap-4 pb-8 border-b-[1px] border-gray-500">
-                    <CardCredit />
+                    <CardCredit number={"896547552361452"} dateExpired={"12/25"} cvv={"589"}/>
                     <article className="flex flex-col gap-4">
                         <h3 className="text-xl font-bold text-white bg-black px-4 py-2 w-fit uppercase">Primario</h3>
                         <div>

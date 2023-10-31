@@ -3,43 +3,46 @@ import {Link} from 'react-router-dom'
 import cardIcon from '../../../assets/icons/card-icon.svg'
 import secureIcon from '../../../assets/icons/secure-icon.svg'
 import dateIcon from '../../../assets/icons/date-icon.svg'
-
+import {addCardCredit} from './../../../services/apiService'
+import { AuthContext } from '../../../context/AuthContext'
+import { useContext } from 'react'
 
 const CardFormAdd = ({setAddCardFormActive}) => {
+    const {dataUser} = useContext(AuthContext)
     const [cardData, setCardData] = useState({
-        cardNumber: '',
-        expirationDate: '',
-        cvv: '',
-        postalCode: '',
-        type: ''
+        numero: '000000000000000',
+        fechaExpiracion: '',
+        codigoCVC: '',
+        operadora: ''
     })
+    const token = localStorage.getItem('token')
     const handleChange = (e) => {
         setCardData({
             ...cardData,
-            [e.target.id]: e.target.value
+            [e.target.name]: e.target.value
         })
-
-        if (e.target.id === 'cardNumber') {
-            const typeCard = cardType(cardData.cardNumber)
-            setCardData({
-                ...cardData,
-                type: typeCard
-            })
-        }
     }
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault()
+        const typeCard = cardType(cardData.numero)
+        setCardData({
+            ...cardData,
+            user: {id:dataUser.id},
+            operadora: typeCard
+        })
         console.log(cardData)
+        const reponse = await addCardCredit(cardData,token)
+        console.log(reponse)
         setAddCardFormActive(false)
     }
     const cardType = (cardNumber) => {
         console.log("clasificando")
-        const visa = /^4\d{12}(?:\d{3})?$/
-        const mastercard = /^5[1-5]\d{14}$/
-        const amex = /^3[47]\d{13}$/
-        const discover = /^6(?:011|5\d{2})\d{12}$/
-        const diners = /^3(?:0[0-5]|[68]\d)\d{11}$/
-        const jcb = /^(?:2131|1800|35\d{3})\d{11}$/
+        const visa = new RegExp('^4[0-9]{12}(?:[0-9]{3})?$')
+        const mastercard = new RegExp('^5[1-5][0-9]{14}$')
+        const amex = new RegExp('^3[47][0-9]{13}$')
+        const discover = new RegExp('^6(?:011|5[0-9]{2})[0-9]{12}$')
+        const diners = new RegExp('^3(?:0[0-5]|[68][0-9])[0-9]{11}$')
+        const jcb = new RegExp('^(?:2131|1800|35[0-9]{3})[0-9]{11}$')
         if (visa.test(cardNumber)) {
             return 'visa'
         }
@@ -58,6 +61,7 @@ const CardFormAdd = ({setAddCardFormActive}) => {
         if (jcb.test(cardNumber)) {
             return 'jcb'
         }
+
         return 'unknown'
     }
     return (
@@ -71,7 +75,7 @@ const CardFormAdd = ({setAddCardFormActive}) => {
                         <input
                             className='outline-none bg-transparent w-full' 
                             type="text" 
-                            id="cardNumber" 
+                            name="numero"
                             placeholder="Numero de tarjeta" 
                             onChange={handleChange}
                         />
@@ -84,7 +88,7 @@ const CardFormAdd = ({setAddCardFormActive}) => {
                         <input
                             className='outline-none bg-transparent w-full' 
                             type="date" 
-                            id="expirationDate" 
+                            name="fechaExpiracion" 
                             placeholder="Fecha de expiracion" 
                             onChange={handleChange}
                         />
@@ -97,7 +101,7 @@ const CardFormAdd = ({setAddCardFormActive}) => {
                         <input
                             className='outline-none bg-transparent w-full' 
                             type="text" 
-                            id="cvv" 
+                            name="codigoCVC" 
                             placeholder="&bull;&bull;&bull;"
                             onChange={handleChange}
                         />

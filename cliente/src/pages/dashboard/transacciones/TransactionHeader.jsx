@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { addTransaction } from '../../../services/apiService'
 
 
-const TransactionHeader = ({handleFilter,filterActive}) => {
+const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
     const [inputSearchActive, setInputSearchActive] = useState(false)
     const { dataUser } = useContext(AuthContext)
     const [isActiveFormTransaction, setIsActiveFormTransaction] = useState(false)
@@ -33,11 +33,12 @@ const TransactionHeader = ({handleFilter,filterActive}) => {
     const handlerAddTransaction = async (e) => {
         e.preventDefault()
         console.log(transaction)
-        const response = await addTransaction(transaction, token)
-        console.log(response)
         setTransaction({
             userId: dataUser?.id,
         })
+        const response = await addTransaction(transaction, token)
+        console.log(response)
+        setFilterActive('filter-pending')
     }
     return (
         <header className="flex flex-col items-start w-full gap-2">
