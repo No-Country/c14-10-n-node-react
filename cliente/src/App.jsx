@@ -4,6 +4,7 @@ import { router } from './router/index.routing'
 import { useAuthContext } from './hooks/useAuthContext'
 import { useEffect } from 'react'
 import { Loader } from './components/Loader/Loader'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const { checkAuth, loading } = useAuthContext()
@@ -19,7 +20,11 @@ function App() {
     return <Loader />;
   }
   return (
-    <RouterProvider router={router} />
+    <>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </>
+
   )
 }
 
