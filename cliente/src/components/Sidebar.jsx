@@ -81,7 +81,7 @@ const Sidebar = ({ isMobile }) => {
                             <li
                                 key={option.id}
                                 onClick={() => handleOptionSelected(option.name)}
-                                className={`cursor-pointer rounded-[2rem] border-[1px] flex justify-start gap-3 items-center px-6 py-3 font-bold ${optionSelected == option.name ? 'bg-blue-50 border-primary text-primary' : 'bg-transparent border-transparent'}`}
+                                className={`cursor-pointer rounded-[2rem] border-[1px] flex justify-start gap-3 items-center px-3 md:px-6 py-3 font-bold ${optionSelected == option.name ? 'bg-blue-50 border-primary text-primary' : 'bg-transparent border-transparent'}`}
                             >
                                 <img className='w-6 h-6' src={option.name == optionSelected ? option.iconSelected : option.icon} alt="" />
                                 <p className={`capitalize ${isMobile ? 'hidden' : ''}`}>

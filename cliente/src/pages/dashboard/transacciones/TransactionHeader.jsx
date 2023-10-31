@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { addTransaction } from '../../../services/apiService'
 
 
-const TransactionHeader = ({ filterForApproved, filterForPending, filterReset }) => {
+const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
     const [inputSearchActive, setInputSearchActive] = useState(false)
     const { dataUser } = useContext(AuthContext)
     const [isActiveFormTransaction, setIsActiveFormTransaction] = useState(false)
@@ -33,24 +33,30 @@ const TransactionHeader = ({ filterForApproved, filterForPending, filterReset })
     const handlerAddTransaction = async (e) => {
         e.preventDefault()
         console.log(transaction)
-        const response = await addTransaction(transaction, token)
-        console.log(response)
         setTransaction({
             userId: dataUser?.id,
         })
+        const response = await addTransaction(transaction, token)
+        console.log(response)
+        setFilterActive('filter-pending')
     }
     return (
         <header className="flex flex-col items-start w-full gap-2">
             <div className="w-full flex justify-start gap-2 border-b-[1px] border-slate-300">
-                <h3 className="px-4 cursor-pointer border-b-[4px] text-xl font-semibold border-primary text-primary"
-                    onClick={filterReset}>Todo</h3>
-                <h3 className="px-4 cursor-pointer border-b-[4px] text-xl font-semibold border-transparent"
-                    onClick={filterForPending}
+                <h3 
+                    className={`px-4 cursor-pointer border-b-[4px] text-xl font-semibold  ${filterActive === 'filter-all' && 'border-primary'}`}
+                    id='filter-all'
+                    onClick={handleFilter}>Todo</h3>
+                <h3 
+                    className={`px-4 cursor-pointer border-b-[4px] text-xl font-semibold ${filterActive === 'filter-pending' && 'border-primary text-primary'}`}
+                    id='filter-pending'
+                    onClick={handleFilter}
                 >Pendiente</h3>
                 <h3
-                    className="px-4 cursor-pointer border-b-[4px] text-xl font-semibold border-transparent"
-                    onClick={filterForApproved}
-                >Completado</h3>
+                    className={`px-4 cursor-pointer border-b-[4px] text-xl font-semibold ${filterActive === 'filter-approved' && 'border-primary text-primary'}`}
+                    id='filter-approved'
+                    onClick={handleFilter}
+                >Aprobado</h3>
             </div>
             <div className="flex justify-between gap-4 py-2">
                 <div className={`flex gap-2 bg-slate-200 p-2 rounded-xl border-[2px]  ${inputSearchActive ? 'border-primary' : 'border-transparent'}`}>
