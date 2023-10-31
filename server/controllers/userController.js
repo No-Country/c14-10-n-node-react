@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import { createAccessToken } from "../libs/jwt.js";
-import { removeFromBlacklist } from "./blacklist.js";
+import { removeFromBlacklist } from "./blackList.js";
 
 export async function signup(req, res) {
   try {
@@ -19,7 +19,7 @@ export async function signup(req, res) {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      return res.status(400).json({ message: "Email already in use" });
+      return res.status(400).json({ message: "Este correo ya esta en uso" });
     }
 
     const saltRounds = 10;
