@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Tarjetas from "./Tarjetas.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -28,25 +29,13 @@ const userSchema = new mongoose.Schema(
     ubicacion: String,
     tarjetas: [
       {
-        numero: {
-          type: String,
-          required: true,
-          unique: true,
-        },
-        fechaExpiracion: {
-          type: String,
-          required: true,
-        },
-        codigoCVC: {
-          type: String,
-          required: true,
-        },
-        operadora: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tarjetas",
       },
     ],
     datosUsuario: {
       nombresCompletos: String,
-      foto: String, // Store the Cloudinary URL for the photo
+      foto: String, // Almacenar la URL de Cloudinary para la foto
       direccion: {
         pais: String,
         region: String,
@@ -61,13 +50,15 @@ const userSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
         },
-        para: String, // Correo Electrónico
+        para: String,
       },
     ],
   },
   {
-    timestamps: true,
+    timestamps: true,    
   }
 );
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User;

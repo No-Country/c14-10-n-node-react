@@ -10,10 +10,10 @@ export async function signup(req, res) {
       email,
       password,
       ubicacion,
-      tarjetas,
       datosUsuario,
       transacciones,
       dni,
+      tarjetas,
     } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -32,10 +32,10 @@ export async function signup(req, res) {
       passwordHash,
       salt,
       ubicacion,
-      tarjetas,
       datosUsuario,
       transacciones,
       dni,
+      tarjetas,
     });
 
     const userSaved = await newUser.save();
@@ -48,10 +48,10 @@ export async function signup(req, res) {
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
       ubicacion,
-      tarjetas,
       datosUsuario,
       transacciones,
       dni,
+      tarjetas,
     });
   } catch (error) {
     console.error("Error in user sign-up:", error);
@@ -87,9 +87,14 @@ export async function login(req, res) {
       email: userFound.email,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
+      ubicacion: userFound.ubicacion,
+      datosUsuario: userFound.datosUsuario,
+      transacciones: userFound.transacciones,
+      dni: userFound.dni,
+      tarjetas: userFound.tarjetas,
     });
   } catch (error) {
-    console.error("Error in user sign-up:", error);
+    console.error("Error in user login:", error);
     res.status(500).json({ message: "Server error" });
   }
 }
@@ -123,10 +128,10 @@ export async function getProfile(req, res) {
     createdAt: userFound.createdAt,
     updatedAt: userFound.updatedAt,
     ubicacion: userFound.ubicacion,
-    tarjetas: userFound.tarjetas,
     datosUsuario: userFound.datosUsuario,
     transacciones: userFound.transacciones,
     dni: userFound.dni,
+    tarjetas: userFound.tarjetas,
   });
 }
 
