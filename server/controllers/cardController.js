@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 import Tarjetas from "../models/Tarjetas.js";
+import { cleanOrphanedCards } from "../maintenance/maintenance.js";
+import { ObjectId, Types, mongoose } from "mongoose";
 
 // Function to add a card to a user
 export async function addCard(req, res) {
@@ -102,12 +104,24 @@ export async function deleteCard(req, res) {
   const cardId = req.params.cardId;
 
   try {
-    // Use the Mongoose model to delete the card by its ID
-    const result = await Tarjetas.deleteOne({ _id: cardId });
+    const cardObjectId = new mongoose.Types.ObjectId(cardId); // Create an ObjectId instance using Types
+
+    // Use the Mongoose model to delete the card by its ObjectId
+    const result = await Tarjetas.deleteOne({ _id: cardObjectId });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Card not found" });
     }
+
+    // Remove the card ID from the user's tarjetas array
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (user) {
+      user.tarjetas.pull(cardObjectId); // Use the ObjectId instance
+      await user.save();
+    }
+
+    await cleanOrphanedCards();
 
     res.status(200).json({ message: "Card deleted successfully" });
   } catch (error) {

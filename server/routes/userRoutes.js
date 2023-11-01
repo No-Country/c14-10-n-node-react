@@ -1,10 +1,11 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.js";
-import { authRequired } from '../middlewares/validateToken.js';
-import { validate } from '../middlewares/validatorMiddleware.js'; // Importa el middleware de validación
+import { authRequired } from "../middlewares/validateToken.js";
+import { validate } from "../middlewares/validatorMiddleware.js";
+import * as transactionController from "../controllers/transactionController.js";
 
 // Importa los esquemas de validación
-import { registerSchema, loginSchema } from '../schemas/userSchema.js';
+import { registerSchema, loginSchema } from "../schemas/userSchema.js";
 
 const router = Router();
 
@@ -20,6 +21,14 @@ router.get("/", userController.getAllUsers);
 // Ruta protegida con el middleware de autenticación
 router.get("/profile", authRequired, userController.getProfile);
 
-// Agrega más rutas de usuario según sea necesario
+// Ruta para modificacion de usuario con validación
+router.put("/updateUser/:userId", authRequired, userController.updateUser);
+
+// Ruta para transacciones aprobadas
+router.put(
+  "/approveTransaction/:transactionId",
+  authRequired,
+  transactionController.approveTransaction
+);
 
 export default router;

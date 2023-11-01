@@ -7,6 +7,7 @@ export default function FormLogin() {
         email: '',
         password: ''
     })
+    console.log(dates)
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

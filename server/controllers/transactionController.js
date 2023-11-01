@@ -59,3 +59,29 @@ export async function deleteTransaction(req, res) {
     res.status(500).json({ message: "Server error" });
   }
 }
+
+// Transacciones aprobadas
+export async function approveTransaction(req, res) {
+  try {
+    // Get the transaction ID from request parameters
+    const transactionId = req.params.transactionId;
+
+    // Find the transaction by ID and update its status to "approved"
+    const transaction = await Transaction.findByIdAndUpdate(
+      transactionId,
+      { status: "approved" },
+      { new: true }
+    );
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Transaction approved successfully", transaction });
+  } catch (error) {
+    console.error("Error approving transaction:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
