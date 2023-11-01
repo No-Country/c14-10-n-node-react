@@ -5,7 +5,7 @@ import Tarjetas from "../models/Tarjetas.js";
 export async function addCard(req, res) {
   try {
     const userId = req.user.id;
-    const { numero, fechaExpiracion, codigoCVC, operadora } = req.body;
+    const { numero, fechaExpiracion, codigoCVC, operadora, nombre } = req.body;
 
     const user = await User.findById(userId);
 
@@ -18,6 +18,7 @@ export async function addCard(req, res) {
       fechaExpiracion,
       codigoCVC,
       operadora,
+      nombre
     });
 
     card.save();
@@ -74,7 +75,7 @@ export async function getCard(req, res) {
 // Function to update a card
 export async function updateCard(req, res) {
   const cardId = req.params.cardId;
-  const { numero, fechaExpiracion, codigoCVC, operadora } = req.body;
+  const { numero, fechaExpiracion, codigoCVC, operadora, nombre } = req.body;
 
   try {
     const card = await Tarjetas.findById(cardId);
@@ -87,6 +88,7 @@ export async function updateCard(req, res) {
     card.fechaExpiracion = fechaExpiracion;
     card.codigoCVC = codigoCVC;
     card.operadora = operadora;
+    card.nombre = nombre;
 
     await card.save();
 

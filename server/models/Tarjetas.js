@@ -6,6 +6,10 @@ const tarjetasSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  nombre: {
+    type: String,
+    required: true,
+  },
   fechaExpiracion: {
     type: String,
     required: true,
