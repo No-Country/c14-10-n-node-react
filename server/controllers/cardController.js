@@ -104,16 +104,14 @@ export async function deleteCard(req, res) {
   const cardId = req.params.cardId;
 
   try {
-    const cardObjectId = new mongoose.Types.ObjectId(cardId); // Create an ObjectId instance using Types
+    const cardObjectId = new mongoose.Types.ObjectId(cardId);
 
-    // Use the Mongoose model to delete the card by its ObjectId
     const result = await Tarjetas.deleteOne({ _id: cardObjectId });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Card not found" });
     }
 
-    // Remove the card ID from the user's tarjetas array
     const userId = req.user.id;
     const user = await User.findById(userId);
     if (user) {
