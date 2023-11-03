@@ -12,6 +12,10 @@ const TransactionFormAdd = () => {
                     <input type="text" name="description" id="description" />
                 </div>
                 <div>
+                    <label htmlFor="name">Para</label>
+                    <input type="text" placeholder="jhondae@gmail.com" />
+                </div>
+                <div>
                     <label>Destino</label>
                     <select name="destination" id="destination">
                         <option value="1">Cuenta de ahorro</option>

@@ -25,7 +25,7 @@ export default function PrivateRoutes() {
     }, [])
 
     if (!auth) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/" />;
     }
     return (
         <div className={`flex h-screen ${isMobile ? 'flex-col-reverse gap-0' : ''}`}>

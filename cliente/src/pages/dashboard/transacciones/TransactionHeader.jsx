@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { addTransaction } from '../../../services/apiService'
 
 
-const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
+const TransactionHeader = ({ handleFilter, filterActive, setFilterActive }) => {
     const [inputSearchActive, setInputSearchActive] = useState(false)
     const { dataUser } = useContext(AuthContext)
     const [isActiveFormTransaction, setIsActiveFormTransaction] = useState(false)
@@ -43,11 +43,11 @@ const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
     return (
         <header className="flex flex-col items-start w-full gap-2">
             <div className="w-full flex justify-start gap-2 border-b-[1px] border-slate-300">
-                <h3 
+                <h3
                     className={`px-4 cursor-pointer border-b-[4px] text-xl font-semibold  ${filterActive === 'filter-all' && 'border-primary'}`}
                     id='filter-all'
                     onClick={handleFilter}>Todo</h3>
-                <h3 
+                <h3
                     className={`px-4 cursor-pointer border-b-[4px] text-xl font-semibold ${filterActive === 'filter-pending' && 'border-primary text-primary'}`}
                     id='filter-pending'
                     onClick={handleFilter}
@@ -95,6 +95,15 @@ const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
                                 onChange={handlerChangeFormTransaction}
                             />
                         </div>
+                        <div className="flex flex-col w-full gap-2">
+                            <label className="font-semibold text-slate-800">Para</label>
+                            <input
+                                className="p-2 rounded-xl border-[1px] border-slate-500 outline-none px-2 font-semibold"
+
+                                type="text"
+                                placeholder="jhondae@gmail.com"
+                            />
+                        </div>
                         <div className="flex gap-4 justify-evenly">
                             <button
                                 className="rounded-xl font-bold border-[1px] border-slate-500 cursor-pointer p-2"
@@ -102,9 +111,9 @@ const TransactionHeader = ({handleFilter,filterActive,setFilterActive}) => {
                             >Cancelar</button>
                             <input
                                 type='submit'
-                                className="bg-transparent w-[5rem] text-center rounded-xl font-bold border-[1px] border-slate-500 cursor-pointer p-2"
+                                className="bg-transparent w-[6rem] text-center rounded-xl font-bold border-[1px] border-slate-500 cursor-pointer p-2"
                                 onClick={handlerAddTransaction}
-                                value={'Añadir'}
+                                value={'Transferir'}
                             />
                         </div>
                     </form>
